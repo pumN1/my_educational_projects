@@ -1,0 +1,53 @@
+img {
+  height: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+#app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 50px;
+}
+
+.card {
+  max-width: 300px;
+  margin-right: 20px;
+  padding: 10px;
+  align-items: center;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.btnContainer {
+  display: flex;
+}
+
+.btn {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.input {
+
+  padding: 5px 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.errorBlock {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-size: 30px;
+  font-weight: 700;
+  color: red;
+}

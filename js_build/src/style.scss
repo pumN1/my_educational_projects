@@ -1,0 +1,55 @@
+@font-face {
+  font-family: Montserrat;
+  src: url('./assets/fonts/montserrat-regular.woff2');
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.invalid {
+  color: red;
+  border-color: red;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 50px auto;
+  text-align: center;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    &-card {
+      position: relative;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    &-email {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      &_date,
+      &_code {
+        width: 80px;
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+
+    &-btn {
+      padding: 10px;
+      font-size: 18px;
+    }
+  }
+}
