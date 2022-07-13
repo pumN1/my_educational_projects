@@ -1,0 +1,1342 @@
+@import "mixin", "fonts";
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: none;
+}
+
+$colorBackground: #202020;
+$colorText: #cacaca;
+$colorBtn: #ff6e30;
+$colorActive: #ce4307;
+$colorTab: #bc572b;
+$colorNav: #4a4a4a;
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    // font-size: 16px;
+    line-height: 28px;
+    color: $colorText;
+  }
+
+  a {
+    font-family: "TT Firs Neue", sans-serif;
+    font-size: 16px;
+    line-height: 0;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.container {
+  max-width: 1290px;
+  @include makeContainer();
+  @include media-1024() {
+    max-width: 963px;
+  }
+  @include media-1024() {
+    max-width: 963px;
+  }
+  @include media-768() {
+    max-width: 715px;
+  }
+  @include media-720() {
+    max-width: 620px;
+  }
+  @include media-610() {
+    max-width: 580px;
+  }
+  @include media-320() {
+    max-width: 280px;
+  }
+}
+
+.header {
+  background-color: $colorBackground;
+
+  &__conteiner {
+    display: flex;
+    align-items: center;
+    padding: 24px 0px 25px;
+    @include media-1024() {
+      padding: 25px 0px;
+    }
+    @include media-768() {
+      max-width: 100%;
+      justify-content: space-between;
+      display: grid;
+      grid-template-areas:
+        "logo . search"
+        "nav nav nav";
+      row-gap: 26px;
+      padding-bottom: 0;
+    }
+    @include media-320() {
+      row-gap: 21px;
+      padding-top: 22px;
+    }
+
+    .logo-link {
+      grid-area: logo;
+      margin-right: 139px;
+      @include media-1024() {
+        margin-right: 82px;
+      }
+      @include media-768() {
+        margin-right: 0;
+        padding-left: 27px;
+      }
+      @include media-320() {
+        margin-right: 0;
+        padding-left: 21px;
+      }
+    }
+    .burger-menu {
+      @include media-768() {
+        grid-area: nav;
+        padding: 9px 27px 12px;
+        background-color: $colorNav;
+      }
+
+      .adress-tel {
+        display: none;
+        @include linkEffect();
+        @include media-610() {
+          display: block;
+        }
+      }
+    }
+    .nav {
+      @include media-610() {
+        height: 440px;
+      }
+      &__list {
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+        column-gap: 74px;
+        row-gap: 20px;
+        @include media-1024() {
+          column-gap: 33px;
+        }
+        @include media-768() {
+          column-gap: 72px;
+        }
+      }
+
+      // &__item:not(:last-child) {
+      //   // margin-right: 74px;
+      //   @include media-1024() {
+      //     margin-right: 33px;
+      //   }
+      // }
+
+      &__link {
+        line-height: 21px;
+        letter-spacing: 0.45px;
+        @include linkEffect();
+        @include media-1024() {
+          letter-spacing: 0px;
+        }
+      }
+    }
+
+    .header__burger {
+      position: relative;
+      display: none;
+      @include media-610 {
+        grid-area: nav;
+        display: block;
+        width: 100%;
+        padding: 14px 21px 13px;
+        background-color: $colorNav;
+      }
+    }
+
+    // .header-tel {
+    //   display: none;
+    //   @include media-610() {
+    //     display: block;
+    //   }
+    // }
+
+    .social {
+      @include media-1024() {
+        display: none;
+      }
+    }
+
+    .search {
+      grid-area: search;
+      display: none;
+      @include media-1024() {
+        display: block;
+        margin-left: 131px;
+      }
+      @include media-768() {
+        margin-left: 0;
+        padding-right: 27px;
+      }
+      @include media-320() {
+        padding-top: 2px;
+        padding-right: 22px;
+      }
+
+      &__icon {
+        @include buttonReset();
+        svg {
+          fill: #bcbcbc;
+        }
+        @include socialEffect();
+        @include media-320() {
+          svg {
+            height: 20px;
+            width: 20px;
+          }
+        }
+      }
+
+      &__menu {
+        position: absolute;
+        display: none;
+        top: 30px;
+        right: 80px;
+        width: 342px;
+        padding-right: 2px;
+        padding-bottom: 4px;
+        background-color: $colorBackground;
+        @include media-768 {
+          top: 70px;
+          right: 27px;
+        }
+        @include media-320 {
+          top: 23px;
+          left: 21px;
+          width: calc(100% - 42px);
+        }
+
+        &-input {
+          width: 308px;
+          margin-right: 5px;
+          font-family: "TT Firs Neue", sans-serif;
+          font-size: 16px;
+          line-height: 21px;
+          color: #e9e9e9;
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid #e9e9e9;
+          @include searchEffect();
+          @include media-320 {
+            width: calc(100% - 32px);
+            margin-right: 10px;
+            font-size: 14px;
+            line-height: 18px;
+          }
+
+          &::placeholder {
+            color: #e9e9e9;
+          }
+        }
+      }
+
+      &__close {
+        @include buttonReset();
+        svg {
+          width: 23px;
+          height: 23px;
+          fill: #808080;
+        }
+        @include socialEffect();
+        @include media-320 {
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.burger {
+  display: none;
+  height: 18px;
+  width: 20px;
+  @include buttonReset();
+  svg {
+    fill: white;
+  }
+  @include socialEffect();
+  @include media-610() {
+    display: block;
+  }
+  &-x {
+    display: none;
+    padding: 0;
+    @include buttonReset();
+    svg {
+      fill: #808080;
+    }
+    @include socialEffect();
+  }
+}
+
+.social {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 30px;
+    gap: 20px;
+    margin-left: 87px;
+  }
+
+  &__item {
+    @include socialEffect();
+    // &:not(:last-child) {
+    //   margin-right: 20px;
+    // }
+  }
+  .social__link {
+    fill: $colorText;
+    @include socialEffect();
+  }
+}
+//--hero--
+.section-hero {
+  &__container {
+    @include makeGrid();
+    padding: 35px 0px 67px;
+    @include media-1024() {
+      padding-top: 34px;
+    }
+    @include media-768() {
+      padding: 34px 0px 68px;
+    }
+    @include media-320() {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 422px 20px 321px;
+      row-gap: 34px;
+      padding: 30px 0px 50px;
+    }
+  }
+
+  &__left {
+    position: relative;
+    grid-column: span 6;
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 7px;
+    padding: 60px 145px 60px 60px;
+    color: white;
+    @include media-1024() {
+      margin-top: 0px;
+      padding: 60px 15px 30px 30px;
+    }
+    @include media-768() {
+      margin-top: 2px;
+      padding: 60px 72px 30px 30px;
+    }
+    @include media-320 {
+      grid-column: span 2;
+      grid-row: span 1;
+      margin-top: 0px;
+      padding: 30px 46px 30px 30px;
+    }
+
+    .section-hero__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: -1;
+    }
+
+    &-desc {
+      margin-bottom: 3px;
+      font-size: 16px;
+      line-height: 19px;
+      @include media-1024() {
+        margin-bottom: 11px;
+        word-spacing: 1.5px;
+      }
+      @include media-768() {
+        margin-bottom: 16px;
+      }
+      @include media-320() {
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+
+    &-heading {
+      margin-bottom: 20px;
+      font-family: "TT Firs Neue", sans-serif;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 104%;
+      @include media-1024() {
+        font-size: 34px;
+        line-height: 100%;
+      }
+      @include media-768() {
+        margin-bottom: 22px;
+        line-height: 90%;
+      }
+      @include media-320() {
+        margin-bottom: 14px;
+        font-size: 24px;
+        line-height: 110%;
+      }
+    }
+  }
+
+  &__list {
+    grid-column: span 6;
+    @include makeGrid();
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 300px 257px;
+    row-gap: 30px;
+    @include media-1024() {
+      grid-template-rows: 332px 186px;
+    }
+    @include media-768() {
+      grid-template-rows: 228px 133px;
+    }
+    @include media-320() {
+      grid-column: span 2;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 186px 105px;
+    }
+  }
+
+  &__heading {
+    grid-column: span 6;
+    margin-bottom: 25px;
+    @include heading();
+    line-height: 104%;
+    @include media-768() {
+      margin-bottom: 17px;
+      font-size: 22px;
+    }
+    @include media-320() {
+      grid-column: span 2;
+      margin-bottom: 0;
+      font-size: 18px;
+      line-height: 104%;
+    }
+  }
+
+  &__item {
+    grid-column: span 6;
+    @include media-320 {
+      grid-column: span 2;
+      // padding-top: 4px;
+    }
+
+    &_down {
+      grid-column: span 3;
+      @include media-320 {
+        grid-column: span 1;
+      }
+    }
+  }
+
+  &__btn {
+    align-self: flex-start;
+    @include button();
+    @include btnEffect();
+    @include media-1024() {
+      letter-spacing: -0.3px;
+    }
+    @include media-320() {
+      padding: 12px 23px;
+    }
+  }
+
+  .hashtag-1 {
+    @include ghost();
+    &::before {
+      content: "#мастеркласс";
+      top: 13px;
+      right: 17px;
+      padding: 7px 15px 7px 14px;
+      @include media-768() {
+        top: 15px;
+        right: 18px;
+      }
+      @include media-320() {
+        top: 5px;
+        right: 8px;
+        padding: 4px 7px;
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
+  }
+}
+
+// --studio--
+.section-studio {
+  background-color: $colorBackground;
+
+  &__container {
+    padding: 30px 0px 70px;
+    @include media-1024() {
+      padding-bottom: 68px;
+    }
+    @include media-768() {
+      padding-bottom: 70px;
+    }
+    @include media-320() {
+      padding-bottom: 60px;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 1px;
+    color: white;
+    @include heading();
+  }
+
+  &__content {
+    @include makeGrid();
+    grid-template-rows: 255px 88px;
+    row-gap: 25px;
+    @include media-1024() {
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: 332px 171px;
+    }
+    @include media-768() {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 569px 158px;
+    }
+    @include media-720() {
+      grid-template: auto / repeat(4, 1fr);
+      row-gap: 24px;
+    }
+    @include media-320 {
+      grid-template: auto / repeat(2, 1fr);
+      row-gap: 24px;
+    }
+  }
+
+  &__descript {
+    grid-column: span 6;
+    grid-row: span 2;
+    padding-top: 4px;
+    font-size: 16.5px;
+    @include media-1024() {
+      grid-column: span 4;
+      font-size: 16.5px;
+    }
+    @include media-768() {
+      grid-column: span 3;
+    }
+    @include media-720() {
+      grid-column: span 4;
+    }
+    @include media-320 {
+      grid-column: span 2;
+      grid-row: span 1;
+      font-size: 14.5px;
+      line-height: 25px;
+    }
+  }
+
+  &__image {
+    grid-column: span 6;
+    @include media-1024() {
+      grid-column: span 4;
+    }
+    @include media-768() {
+      grid-column: span 3;
+    }
+    @include media-720() {
+      grid-column: span 2;
+    }
+    @include media-320 {
+      height: 278px;
+      width: 278px;
+    }
+  }
+}
+
+.form {
+  grid-column: span 6;
+  @include media-1024() {
+    grid-column: span 3;
+  }
+  @include media-720 {
+    grid-column: 3 / 5;
+  }
+  @include media-320 {
+    grid-column: span 2;
+  }
+
+  &__heading {
+    margin-bottom: 16px;
+    @include heading();
+    line-height: 22px;
+    font-weight: 400;
+    color: white;
+    @include media-320() {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    @include media-1024() {
+      flex-direction: column;
+    }
+  }
+
+  &__label {
+    position: relative;
+    width: 100%;
+    margin-right: 30px;
+    @include media-1024() {
+      margin-right: 0px;
+      margin-bottom: 20px;
+    }
+    .js-validate-error-label {
+      position: absolute;
+      top: 3px;
+      left: 23px;
+      font-family: "Roboto", sans-serif;
+      font-size: 9px;
+      line-height: 11px;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 16px 23px;
+    line-height: 19px;
+    color: white;
+    background-color: #4a4a4a;
+    border: none;
+    @include media-320() {
+      padding: 12px 23px;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  &__input::placeholder {
+    color: $colorText;
+    letter-spacing: 1px;
+  }
+
+  &__btn {
+    align-self: flex-start;
+    @include button();
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    @include btnEffect();
+    @include media-320() {
+      padding: 12px 20.5px;
+    }
+  }
+}
+
+//--project--
+.section-project {
+  &__container {
+    padding: 68px 0px;
+    @include media-320() {
+      padding: 50px 0px;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 12px;
+    @include heading();
+    @include media-320() {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template: repeat(2, 300px) / repeat(12, 1fr);
+    gap: 30px;
+    @include media-1024() {
+      grid-template: 285px 307px 307px / repeat(8, 1fr);
+      grid-auto-flow: dense;
+      row-gap: 24px;
+    }
+    @include media-768() {
+      grid-template: 300px 306px 307px 300px / repeat(6, 1fr);
+    }
+    @include media-320() {
+      grid-template: repeat(3, 278px) 428px repeat(2, 300px) 424px / repeat(2, 1fr);
+    }
+
+    .hashtag-2 {
+      &::before {
+        content: "#пейзаж";
+      }
+      @include media-768() {
+        .section-project__item-desc {
+          letter-spacing: 0.2px;
+        }
+      }
+    }
+    .hashtag-3,
+    .hashtag-8 {
+      &::before {
+        content: "#портрет";
+      }
+    }
+    .hashtag-4 {
+      &::before {
+        content: "#предмет";
+      }
+      @include media-1024() {
+        grid-column: span 4;
+      }
+      @include media-768() {
+        grid-column: span 2;
+        .section-project__item-desc {
+          height: 44px;
+          max-width: 100%;
+          margin-bottom: 32px;
+          @include media-320() {
+            height: 40px;
+            margin-bottom: 14px;
+          }
+        }
+      }
+    }
+    .hashtag-5 {
+      &::before {
+        content: "#fuji";
+      }
+      @include media-768() {
+        margin-bottom: 6px;
+      }
+    }
+    .hashtag-6 {
+      &::before {
+        content: "#проектзабвение";
+      }
+      @include media-1024() {
+        order: 1;
+        .item-block {
+          padding: 30px 265px 30px 29px;
+        }
+      }
+      @include media-320() {
+        margin-top: 2px;
+        .item-block__desc {
+          margin-bottom: 23px;
+        }
+      }
+    }
+    .hashtag-7 {
+      &::before {
+        content: "#ретушь";
+      }
+    }
+  }
+
+  &__item {
+    @include ghost();
+    grid-column: span 2;
+
+    &-desc {
+      display: block;
+      display: -webkit-box;
+      margin-bottom: 10px;
+      line-height: 22px;
+      color: $colorBackground;
+      letter-spacing: 0.3px;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include media-1024() {
+        max-width: 95%;
+        height: 44px;
+        margin-bottom: 18px;
+        -webkit-line-clamp: 2;
+      }
+      @include media-768() {
+        max-width: 100%;
+        height: 63px;
+        margin-bottom: 14px;
+      }
+      @include media-320() {
+        height: 40px;
+      }
+    }
+
+    &-date {
+      padding-left: 16px;
+      font-size: 12px;
+      line-height: 22px;
+      color: #999;
+      background: url(../img/sprite.svg#calendar) center left no-repeat transparent;
+      background-size: 14px;
+      @include media-1024() {
+        padding-left: 18px;
+      }
+    }
+
+    &-big {
+      @include ghost();
+      grid-column: span 6;
+      @include media-1024() {
+        grid-column: span 5;
+      }
+      @include media-768() {
+        grid-column: span 6;
+      }
+      @include media-320() {
+        grid-column: span 2;
+      }
+    }
+
+    &_middle {
+      @include ghost();
+      grid-column: span 3;
+      @include media-1024() {
+        .section-project__item-desc {
+          height: 66px;
+          -webkit-line-clamp: 3;
+        }
+      }
+      @include media-768() {
+        .section-project__item-desc {
+          margin-bottom: 19px;
+        }
+      }
+      @include media-320() {
+        grid-column: span 2;
+        .section-project__item-desc {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  &__img {
+    margin-bottom: 12px;
+
+    &_big {
+      position: absolute;
+      height: 100%;
+      z-index: -1;
+    }
+  }
+}
+
+.item-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 22px 308px 30px 29px;
+  color: white;
+  @include media-1024() {
+    padding: 31px 268px 37px 30px;
+  }
+  @include media-768() {
+    padding: 31px 393px 30px 30px;
+  }
+  @include media-720() {
+    padding: 31px 250px 30px 30px;
+  }
+  @include media-610() {
+    padding: 31px 200px 30px 30px;
+  }
+  @include media-320() {
+    justify-content: flex-end;
+    padding: 31px 37px 30px 30px !important;
+  }
+
+  &__date {
+    margin-bottom: 2px;
+    padding-left: 19px;
+    font-size: 12px;
+    color: white;
+    background: url(../img/sprite.svg#calendar-white) center left no-repeat transparent;
+    background-size: 14px;
+    @include media-320() {
+      margin-bottom: 6px;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 4px;
+    font-family: "TT Firs Neue", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    @include media-320() {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__desc {
+    line-height: 22px;
+    color: white;
+    letter-spacing: 0.2px;
+    @include media-320() {
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  &__btn {
+    align-self: flex-start;
+    @include button();
+    padding: 12.5px 19px;
+    line-height: 19px;
+    background-color: transparent;
+    border: 3px solid $colorBtn;
+    @include btn-2Effect();
+    @include media-768() {
+      letter-spacing: -0.5px;
+    }
+    @include media-768() {
+      padding: 9px 18px;
+    }
+  }
+}
+
+.section-contacts {
+  &__container {
+    position: relative;
+    margin-bottom: 68px;
+    @include makeGrid();
+    @include media-1024() {
+      grid-template-columns: repeat(8, 1fr);
+    }
+    @include media-768() {
+      grid-template-columns: repeat(6, 1fr);
+      row-gap: 24px;
+    }
+    @include media-320() {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 23px;
+      margin-bottom: 50px;
+    }
+
+    #map {
+      grid-column: span 8;
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(8, 1fr);
+      column-gap: 30px;
+      margin-top: 7px;
+      @include media-1024() {
+        grid-column: span 5;
+        width: 590px !important;
+      }
+      @include media-768() {
+        grid-column: span 6;
+        width: 714px !important;
+      }
+      @include media-720() {
+        grid-column: span 6;
+        width: 100% !important;
+      }
+      @include media-320() {
+        grid-column: span 2;
+        width: calc(100% + 40px) !important;
+        height: 472px !important;
+        margin-top: 0px;
+        margin-right: -20px;
+        margin-left: -20px;
+      }
+
+      .ymaps-2-1-79-map {
+        grid-column: 1 / 9;
+        grid-row: 1 / 3;
+      }
+
+      .ymaps-2-1-79-controls-pane,
+      .ymaps-2-1-79-copyrights-pane {
+        display: none;
+      }
+
+      *[class$="ground-pane"] {
+        filter: grayscale(1);
+      }
+
+      .ymaps-2-1-79-placemark-overlay .ymaps-2-1-79-user-selection-none {
+        filter: grayscale(0);
+      }
+    }
+
+    .form {
+      @include media-320() {
+        font-size: 14px;
+      }
+      &__heading {
+        margin-bottom: 4px;
+        color: $colorBackground;
+        @include media-320() {
+          margin-bottom: 7px;
+        }
+      }
+
+      &__comment {
+        margin-bottom: 14px;
+        line-height: 22px;
+        color: #999999;
+        letter-spacing: 0.15px;
+        @include media-320() {
+          line-height: 18px;
+        }
+      }
+
+      &__label {
+        margin-bottom: 20px;
+      }
+
+      &__input {
+        width: 100%;
+        margin-right: 0;
+        padding-top: 16px;
+        color: $colorBackground;
+        background: #e9e9e9;
+        @include formEffect();
+        @include media-320() {
+          line-height: 16px;
+          padding: 13.5px 25px 11px;
+        }
+
+        &::placeholder {
+          color: #999999;
+        }
+      }
+
+      .visualy-hidden {
+        position: absolute;
+        visibility: hidden;
+      }
+
+      #comment {
+        max-height: 150px;
+        margin-bottom: 19px;
+        resize: none;
+        font-size: 16px;
+        @include media-320() {
+          font-size: 14px;
+        }
+        &::placeholder {
+          letter-spacing: 0.5px;
+        }
+      }
+
+      &__btn {
+        align-self: start;
+        @include btnEffect();
+      }
+    }
+  }
+
+  &__heading {
+    margin-bottom: 16px;
+    @include heading();
+    @include media-320() {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__form {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    @include media-1024() {
+      grid-column: span 3;
+    }
+    @include media-768() {
+      grid-column: span 4;
+    }
+    @include media-320() {
+      grid-column: span 2;
+    }
+  }
+}
+
+.adress {
+  position: relative;
+  grid-column: 1 / 5;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  padding: 175px 50px 152px 60px;
+  background: rgba(32, 32, 32, 0.85);
+  z-index: 1;
+  @include media-1024() {
+    grid-column: 1 / 9;
+    grid-row: 2 / 3;
+    padding: 26px 265px 21px 30px;
+  }
+  @include media-768() {
+    padding: 25px 265px 21px 30px;
+  }
+  @include media-610() {
+    padding: 25px 160px 21px 30px;
+  }
+  @include media-320() {
+    padding: 26px 34px 14px 18px;
+  }
+
+  &__heading {
+    margin-bottom: 4px;
+    @include heading();
+    font-weight: 400;
+    line-height: 22px;
+    color: white;
+    @include media-320() {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__text {
+    font-style: normal;
+    line-height: 28px;
+    color: $colorText;
+    letter-spacing: 0.2px;
+    @include media-320() {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  &-tel {
+    display: block;
+    padding-top: 2px;
+    padding-left: 22px;
+    line-height: 21px;
+    background: url(../img/sprite.svg#tel) center left no-repeat transparent;
+    background-size: 18px;
+    @include linkEffect();
+    transition: color 0.3s, background 0.3s ease;
+    &:hover {
+      color: $colorBtn;
+      background: url(../img/sprite.svg#tel-hover) center left no-repeat transparent;
+      background-size: 18px;
+    }
+    @include media-1024() {
+      display: inline-block;
+      margin-left: 6px;
+      padding-left: 18px;
+      // color: $colorBtn;
+      letter-spacing: 0.1px;
+    }
+    @include media-320() {
+      display: block;
+      margin-left: 0px;
+      padding-left: 18px;
+      padding-top: 13px;
+      font-size: 14px;
+      line-height: 18px;
+      background-position: bottom left;
+    }
+  }
+
+  &__close {
+    @include buttonReset();
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    svg {
+      fill: #666666;
+    }
+    @include socialEffect();
+  }
+}
+
+.footer {
+  background-color: $colorBackground;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 0px 19px;
+    @include media-768() {
+      padding: 26px 0px 22px;
+    }
+    @include media-320() {
+      flex-direction: column;
+      max-width: 100%;
+      padding: 0px;
+    }
+  }
+
+  &__logo {
+    margin-right: 203px;
+    @include media-1024() {
+      margin-right: 132px;
+    }
+    @include media-320() {
+      order: 1;
+      width: 100%;
+      margin-right: 0;
+      padding: 14px 75px;
+      text-align: center;
+      background-color: $colorNav;
+    }
+
+    .logo-link {
+      line-height: 0;
+    }
+
+    &-descript {
+      display: block;
+      font-family: "TT Firs Neue";
+      font-size: 14px;
+      line-height: 18px;
+      color: #e9e9e9;
+      @include media-320() {
+        font-size: 10px;
+        line-height: 13px;
+      }
+    }
+  }
+
+  &__quotation {
+    max-width: 361px;
+    margin-right: 329px;
+    padding-top: 4px;
+    line-height: 22px;
+    color: $colorText;
+    letter-spacing: 0.15px;
+    @include media-1024() {
+      margin-right: 64px;
+    }
+    @include media-768() {
+      display: none;
+    }
+
+    .author {
+      color: #666;
+    }
+  }
+
+  .social {
+    padding-top: 4px;
+    text-align: center;
+    @include media-1024() {
+      padding-top: 0px;
+    }
+    @include media-320() {
+      padding: 32px 80px;
+    }
+
+    &__heading {
+      margin-bottom: 8px;
+      color: $colorText;
+      @include media-1024 {
+        letter-spacing: 0.2px;
+      }
+      @include media-320 {
+        letter-spacing: normal;
+      }
+    }
+
+    &__list {
+      grid-template-columns: repeat(3, 30px);
+      justify-content: center;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 1330px) {
+  .section-project {
+    .hashtag-2,
+    .hashtag-3 {
+      grid-column: span 2;
+    }
+  }
+}
+
+@media (max-width: 610px) {
+  .burger-menu {
+    position: absolute;
+    z-index: 10;
+    top: 70px;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 541px;
+    padding: 14px 21px;
+    background-color: $colorBackground;
+    transform: translateX(-101%);
+    transition: transform 0.3s ease-in-out;
+    animation: block-on 0.3s linear;
+  }
+  @keyframes block-on {
+    0% {
+      transform: translateX(-101%);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  .burger-menu.is-active {
+    display: block;
+    transform: none;
+    .burger-x {
+      display: block;
+      margin-bottom: 16px;
+      background-color: transparent;
+      border: none;
+    }
+    .nav {
+      display: flex;
+      &__list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+      .nav__item:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
